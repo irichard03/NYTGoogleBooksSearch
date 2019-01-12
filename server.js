@@ -2,6 +2,14 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
+const mongoose = require("mongoose";)
+
+mongoose.connect("mongodb://localhost/test");
+const db = mongoose.connection;
+db.on("error",console.error.bind("console","connection error:"));
+db.once("open", () => {
+  console.log("DB connected!");
+});
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
