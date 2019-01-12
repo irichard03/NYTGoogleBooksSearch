@@ -6,7 +6,10 @@ class Search extends Component {
   render() {
     return (
         <div className="Search">
-        <h1>Search!</h1>
+          <h1>SearchBox</h1>
+          <div className="booksDisplay">
+            <h1>I'd like to be a book</h1>
+          </div>
         </div>
      
     );

@@ -6,7 +6,9 @@ class Saved extends Component {
   render() {
     return (
         <div className="Saved">
-          <h1>Saved!</h1>
+          <div className="displayBooks">
+            <h1>I'd like to be a book</h1>
+          </div>
         </div>
      
     );
