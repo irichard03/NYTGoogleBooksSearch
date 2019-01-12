@@ -15,8 +15,7 @@
   "author": "Ian Richard <ianrichard03@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^4.1.0",
-    "nodemon": "^1.18.9"
+    "concurrently": "^4.1.0"
   },
   "dependencies": {
     "express": "^4.16.3",
