@@ -2,14 +2,7 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
-const mongoose = require("mongoose";)
-
-mongoose.connect("mongodb://localhost/test");
-const db = mongoose.connection;
-db.on("error",console.error.bind("console","connection error:"));
-db.once("open", () => {
-  console.log("DB connected!");
-});
+const controller = require("./controllers/controller.js");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -19,7 +12,10 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+//Controller
+app.use(controller);
 // TODO Define API routes here
+
 
 // Send every other request to the React app
 // Define any API routes before this runs
