@@ -52,13 +52,13 @@ class Search extends Component {
     });
   };
 
-  saveBook = (id) => {
+  saveBook = (book) => {
     axios.post("/api/books", {
-        title: this.state.booklist[id].title,
-        authors: this.state.booklist[id].authors,
-        description: this.state.booklist[id].description,
+        title: book.title,
+        authors: book.authors,
+        description: book.description,
         image: "necronomicon.png",
-        link: this.state.booklist[id].link
+        link: book.link
     }).then((response) => {
       console.log(response);
     });
@@ -84,7 +84,7 @@ class Search extends Component {
                     <div className="book" key={key}>
                     <h4>{book.title}</h4>
                     <ul>
-                    {book.authors.map((author, key)=>(
+                    {book.authors.map((author)=>(
                         <li>{author}</li>
                     ))}
                     </ul>
@@ -93,7 +93,7 @@ class Search extends Component {
                     <img className="placeholder" alt="necronomicon" src="necronomicon.png"/>
                     </a>
                     <div>
-                      <button className="saveMe" onClick={({key}) => this.saveBook({key})}>Save</button>
+                      <button className="saveMe" onClick={() => this.saveBook(book)}>Save</button>
                     </div>
                     </div>
                   ))}

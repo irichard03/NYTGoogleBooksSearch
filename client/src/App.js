@@ -14,7 +14,7 @@ class App extends Component {
           <Nav />
           <div className="container banner">
           <Route exact path="/" component={Search} />
-          <Route exact path="/about" component={Saved} />
+          <Route exact path="/saved" component={Saved} />
           </div>
         </div>
       </Router>

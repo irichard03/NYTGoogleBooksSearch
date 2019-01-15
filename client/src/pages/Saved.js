@@ -1,28 +1,32 @@
 import React, { Component } from "react";
 import "../App.css";
-
+import axios from "axios";
 
 class Saved extends Component {
   state = {
     savedBooks : []
   }
   
-  onComponentDidMount = () => {
-    this.queryBooks();
+  componentDidMount(){
+   this.queryBooks();
   }
   
   queryBooks = () => {
-    alert("I loaded!");
+    axios.get("/api/books")
+      .then((response) => {
+        console.log(response);
+      }).catch((error) =>{
+        console.log(error);
+      });
   }
 
   render() {
     return (
         <div className="Saved">
           <div className="displayBooks">
-            <h1>Saved Books</h1>
+            <button class="btn waves-effect waves-light blue" onClick={this.queryBooks}>Get Saved Books</button>
           </div>
         </div>
-     
     );
   }
 }
