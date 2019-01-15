@@ -3,6 +3,18 @@ import "../App.css";
 
 
 class Saved extends Component {
+  state = {
+    savedBooks : []
+  }
+  
+  onComponentDidMount = () => {
+    this.queryBooks();
+  }
+  
+  queryBooks = () => {
+    alert("I loaded!");
+  }
+
   render() {
     return (
         <div className="Saved">

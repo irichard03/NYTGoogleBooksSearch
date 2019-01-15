@@ -15,7 +15,6 @@ class Search extends Component {
     });
   };
   
-
   formSubmit = (event) => {
     event.preventDefault();
     if(this.state.search){
@@ -53,6 +52,17 @@ class Search extends Component {
     });
   };
 
+  saveBook = (id) => {
+    axios.post("/api/books", {
+        title: this.state.booklist[id].title,
+        authors: this.state.booklist[id].authors,
+        description: this.state.booklist[id].description,
+        image: "necronomicon.png",
+        link: this.state.booklist[id].link
+    }).then((response) => {
+      console.log(response);
+    });
+  };
 
   render() {
     return (
@@ -73,13 +83,23 @@ class Search extends Component {
                 {this.state.booklist.map((book, key) => (
                     <div className="book" key={key}>
                     <h4>{book.title}</h4>
+                    <ul>
+                    {book.authors.map((author, key)=>(
+                        <li>{author}</li>
+                    ))}
+                    </ul>
                     <p>{book.description}</p>
+                    <a className="bookLink" href={book.link}>
+                    <img className="placeholder" alt="necronomicon" src="necronomicon.png"/>
+                    </a>
+                    <div>
+                      <button className="saveMe" onClick={({key}) => this.saveBook({key})}>Save</button>
+                    </div>
                     </div>
                   ))}
               </div>
           </div>
         </div>
-     
     );
   }
 }
