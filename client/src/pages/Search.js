@@ -31,21 +31,26 @@ class Search extends Component {
       .then(res => {
         let list = res.data;
         let tempArray = [];
-        let book = {
-          id: 11,
-          title: "",
-          authors: [],
-          description: "",
-          image: "",
-          link: "",
-
-
-        }
+       
+        
         for(let i = 0; i < 10; i++){
-        
+          let book = {
+            id: i,
+            title: res.data.items[i].volumeInfo.title,
+            authors: [],
+            description: res.data.items[i].volumeInfo.description,
+            image: "necronomicon.png",
+            link:  res.data.items[i].volumeInfo.infoLink,
+          }
+          for(let j = 0; j < res.data.items[i].volumeInfo.authors.length; j++){
+            book.authors.push(res.data.items[i].volumeInfo.authors[j]);
+          }
+          tempArray.push(book);
         }
-        
-      });
+        this.setState({
+          booklist: tempArray
+        });
+    });
   };
 
 
@@ -64,7 +69,14 @@ class Search extends Component {
                     <button class="btn waves-effect waves-light blue" onClick={this.formSubmit}>Submit</button>
                   </div>
               </form>
-
+              <div className="results">
+                {this.state.booklist.map((book, key) => (
+                    <div className="book" key={key}>
+                    <h4>{book.title}</h4>
+                    <p>{book.description}</p>
+                    </div>
+                  ))}
+              </div>
           </div>
         </div>
      
