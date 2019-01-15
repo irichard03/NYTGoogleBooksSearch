@@ -7,7 +7,7 @@ class Saved extends Component {
     return (
         <div className="Saved">
           <div className="displayBooks">
-            <h1>I'd like to be a book</h1>
+            <h1>Saved Books</h1>
           </div>
         </div>
      

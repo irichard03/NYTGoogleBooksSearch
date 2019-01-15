@@ -10,11 +10,12 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App blue lighten-1">
+        <div className="App white">
           <Nav />
-          <h1>Banner</h1>
+          <div className="container banner">
           <Route exact path="/" component={Search} />
           <Route exact path="/about" component={Saved} />
+          </div>
         </div>
       </Router>
     );
