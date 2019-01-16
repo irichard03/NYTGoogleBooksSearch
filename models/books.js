@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bookSchema = new Schema({
-  id: {
+  bookId: {
     type: Number,
     required: true
   },

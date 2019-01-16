@@ -6,15 +6,21 @@ const mongoose = require("mongoose");
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/googlebooks";
 mongoose.connect(MONGODB_URI);
 
-//routes
-//api/books get books
+router.delete("/api/books/:id", (req,res) => {
+    let id = req.params.id;
+    console.log(id);
+    /*
+    db.books.findByIdAndDelete({BookId:id})
+    .then(response => {
+        res.status(200).json(response);
+    });
+    */
+});
 
-
-//api/books post to mongo
 router.post("/api/books", function(req,res) {
     
     db.books.create({ 
-        id: req.body.id,
+        bookId: req.body.id,
         title: req.body.title,
         authors: req.body.authors,
         description: req.body.description,
@@ -35,6 +41,8 @@ router.get("/api/books", (req,res) =>{
         res.json(error);
     });
 });
+
+
 
 //todo api/books/:id (delete) from mongo
 

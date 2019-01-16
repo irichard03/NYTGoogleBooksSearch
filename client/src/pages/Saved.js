@@ -21,8 +21,14 @@ class Saved extends Component {
       });
   }
 
-  removeBooks = () => {
-    alert("I do nothing yet!");
+  removeBooks = (book) => {
+    let url = "/api/books/" + book.bookId;
+    axios.delete(url)
+      .then((response) => {
+        this.queryBooks();
+      }).catch((error) =>{
+        console.log(error);
+      });
   }
 
   render() {
@@ -45,7 +51,7 @@ class Saved extends Component {
                         <img className="placeholder" alt="necronomicon" src={book.image}/>
                         </a>
                         <div>
-                          <button className="removeMe" onClick={() => this.removeBook(book)}>Remove</button>
+                          <button className="removeMe" onClick={() => this.removeBooks(book)}>Remove</button>
                         </div>
                       </div>
                     </div>
