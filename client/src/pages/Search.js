@@ -54,6 +54,7 @@ class Search extends Component {
 
   saveBook = (book) => {
     axios.post("/api/books", {
+        id: book.id,
         title: book.title,
         authors: book.authors,
         description: book.description,

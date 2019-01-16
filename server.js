@@ -3,7 +3,7 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const controller = require("./controllers/controller.js");
-app.use(controller);
+
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(express.static(path.join(__dirname,"./public")));
 //Controller
 
-
+app.use(controller);
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);

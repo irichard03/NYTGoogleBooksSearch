@@ -8,6 +8,26 @@ mongoose.connect(MONGODB_URI);
 
 //routes
 //api/books get books
+
+
+//api/books post to mongo
+router.post("/api/books", function(req,res) {
+    
+    db.books.create({ 
+        id: req.body.id,
+        title: req.body.title,
+        authors: req.body.authors,
+        description: req.body.description,
+        image: req.body.image,
+        link: req.body.link
+     }).then(function(data) { 
+      res.send("OK");
+    }).catch(function(data){
+        res.json(error);
+    });
+
+});
+
 router.get("/api/books", (req,res) =>{
     db.books.find({}).then((data)=>{
         res.json(data);
@@ -16,15 +36,6 @@ router.get("/api/books", (req,res) =>{
     });
 });
 
-//api/books post to mongo
-router.post("/api/books", (req,res) =>{
-    db.books.create(req.body).then((data)=>{
-        
-    }).catch((error)=>{
-        res.json(error);
-    });
-});
-
 //todo api/books/:id (delete) from mongo
 
-module.exports = router;
+module.exports = router;;
