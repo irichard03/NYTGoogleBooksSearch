@@ -3,6 +3,7 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const controller = require("./controllers/controller.js");
+app.use(controller);
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -13,15 +14,9 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
-app.use(controller);
 app.use(express.static(path.join(__dirname,"./public")));
 //Controller
 
-// TODO Define API routes here
-
-
-// Send every other request to the React app
-// Define any API routes before this runs
 
 
 app.listen(PORT, () => {

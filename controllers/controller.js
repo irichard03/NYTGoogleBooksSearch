@@ -17,15 +17,13 @@ router.get("/api/books", (req,res) =>{
 });
 
 //api/books post to mongo
-router.post("api/books", (req,res) =>{
+router.post("/api/books", (req,res) =>{
     db.books.create(req.body).then((data)=>{
-        console.log(req.params.id);
+        
     }).catch((error)=>{
         res.json(error);
     });
 });
-
-
 
 //todo api/books/:id (delete) from mongo
 

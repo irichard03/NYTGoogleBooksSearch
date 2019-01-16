@@ -38,7 +38,7 @@ class Search extends Component {
             title: res.data.items[i].volumeInfo.title,
             authors: [],
             description: res.data.items[i].volumeInfo.description,
-            image: "necronomicon.png",
+            image: res.data.items[i].volumeInfo.imageLinks.thumbnail,
             link:  res.data.items[i].volumeInfo.infoLink,
           }
           for(let j = 0; j < res.data.items[i].volumeInfo.authors.length; j++){
@@ -57,7 +57,7 @@ class Search extends Component {
         title: book.title,
         authors: book.authors,
         description: book.description,
-        image: "necronomicon.png",
+        image: book.image,
         link: book.link
     }).then((response) => {
       console.log(response);
@@ -69,32 +69,34 @@ class Search extends Component {
         <div className="Search">
           <div className="booksDisplay">
               <form className="searchBox">
-                  <div class="input-field">
+                  <div className="input-field">
                   <input
                     type="text"
                     name="search"
                     value={this.state.search}
                     onChange={this.handleInputChange}
                   />
-                    <button class="btn waves-effect waves-light blue" onClick={this.formSubmit}>Submit</button>
+                    <button className="btn waves-effect waves-light blue" onClick={this.formSubmit}>Submit</button>
                   </div>
               </form>
               <div className="results">
                 {this.state.booklist.map((book, key) => (
                     <div className="book" key={key}>
-                    <h4>{book.title}</h4>
-                    <ul>
-                    {book.authors.map((author)=>(
-                        <li>{author}</li>
-                    ))}
-                    </ul>
-                    <p>{book.description}</p>
-                    <a className="bookLink" href={book.link}>
-                    <img className="placeholder" alt="necronomicon" src="necronomicon.png"/>
-                    </a>
-                    <div>
-                      <button className="saveMe" onClick={() => this.saveBook(book)}>Save</button>
-                    </div>
+                      <div>
+                        <h4>{book.title}</h4>
+                        <ul>
+                        {book.authors.map((author)=>(
+                            <li >{author}</li>
+                        ))}
+                        </ul>
+                        <p>{book.description}</p>
+                        <a className="bookLink" href={book.link}>
+                        <img className="placeholder" alt="necronomicon" src={book.image}/>
+                        </a>
+                        <div>
+                          <button className="saveMe" onClick={() => this.saveBook(book)}>Save</button>
+                        </div>
+                      </div>
                     </div>
                   ))}
               </div>

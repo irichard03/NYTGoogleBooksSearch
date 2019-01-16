@@ -10,7 +10,7 @@ class Nav extends Component {
             <nav>
                 <div className="nav-wrapper blue">
                     <a href="#" className="brand-logo center">NY Times Google Books</a>
-                    <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <ul id="nav-mobile" className="left hide-on-med-and-down">
                     <li><Link to="/">Search</Link></li>
                     <li><Link to="/saved">Saved</Link></li>
                     </ul>

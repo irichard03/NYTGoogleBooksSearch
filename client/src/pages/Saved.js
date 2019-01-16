@@ -14,17 +14,43 @@ class Saved extends Component {
   queryBooks = () => {
     axios.get("/api/books")
       .then((response) => {
-        console.log(response);
+        let tempArray = response.data;
+        this.setState({savedBooks: tempArray});
       }).catch((error) =>{
         console.log(error);
       });
+  }
+
+  removeBooks = () => {
+    alert("I do nothing yet!");
   }
 
   render() {
     return (
         <div className="Saved">
           <div className="displayBooks">
-            <button class="btn waves-effect waves-light blue" onClick={this.queryBooks}>Get Saved Books</button>
+            <button className="btn waves-effect waves-light blue" onClick={this.queryBooks}>Get Saved Books</button>
+            <div className="results">
+                {this.state.savedBooks.map((book, key) => (
+                    <div className="book" key={key}>
+                      <div>
+                        <h4>{book.title}</h4>
+                        <ul>
+                        {book.authors.map((author)=>(
+                            <li >{author}</li>
+                        ))}
+                        </ul>
+                        <p>{book.description}</p>
+                        <a className="bookLink" href={book.link}>
+                        <img className="placeholder" alt="necronomicon" src={book.image}/>
+                        </a>
+                        <div>
+                          <button className="removeMe" onClick={() => this.removeBook(book)}>Remove</button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
           </div>
         </div>
     );
